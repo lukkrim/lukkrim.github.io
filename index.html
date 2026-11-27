@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Samson Wan ☾ math-cs & data science @ UCSD</title>
+  <meta name="description" content="Rensong (Samson) Wan — Math-CS & Data Science student at UC San Diego. Frontend developer, tiny-language-model researcher, lofi enjoyer." />
+  <meta property="og:title" content="Samson Wan ☾" />
+  <meta property="og:description" content="Math-CS & Data Science @ UCSD. I build frontends and train tiny language models." />
+  <meta name="theme-color" content="#121433" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23121433'/%3E%3Cpath d='M40 14a20 20 0 1 0 10 30A16 16 0 0 1 40 14z' fill='%23ffc94a'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Caveat:wght@600&family=Space+Grotesk:wght@400;500;700&family=VT323&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
+  </script>
+</head>
+<body class="is-booting">
+  <a class="skip" href="#content">skip to content</a>
+
+  <!-- ================= BOOT / INTRO ================= -->
+  <div id="boot" role="dialog" aria-label="Welcome">
+    <div class="boot-inner">
+      <pre id="boot-log" aria-live="polite"></pre>
+      <div class="boot-actions" id="boot-actions">
+        <button class="btn btn-yellow big" id="enter-music"><span class="cassette-ico">▶</span> tune in <small>(with lofi)</small></button>
+        <button class="btn btn-ghost" id="enter-quiet">enter quietly</button>
+        <p class="boot-hint">press <kbd>Enter</kbd> to tune in · <kbd>Esc</kbd> to skip · best with headphones 🎧</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= HERO: 3D ROOM ================= -->
+  <section id="hero" aria-label="Intro">
+    <div class="hero-sticky">
+      <canvas id="room" aria-label="A cozy cel-shaded desk at night: laptop, lamp, tea, a sleeping cat on the windowsill and rain outside."></canvas>
+      <div class="hero-words" aria-hidden="true">
+        <p class="word w1" data-in="0" data-out="0.22"><span>hi, i'm</span> samson <em>☾</em></p>
+        <p class="word w2" data-in="0.22" data-out="0.46">math-cs <span>+</span><br />data science <span>@ ucsd</span></p>
+        <p class="word w3" data-in="0.46" data-out="0.68">i build frontends<br /><span>&amp;</span> tiny language models</p>
+        <p class="word w4" data-in="0.68" data-out="0.86">come on in <em>→</em></p>
+      </div>
+      <div class="hero-ui">
+        <div class="scroll-hint"><span>scroll</span><i></i></div>
+        <div class="click-hint">psst — click things in the room</div>
+        <div class="swipe-hint" id="swipe-hint">← swipe to look around →</div>
+        <div id="hover-label" class="hover-label"></div>
+      </div>
+      <div class="noscene">
+        <h1>hi, i'm samson ☾</h1>
+        <p>math-cs + data science @ ucsd</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTENT ================= -->
+  <canvas id="sky" aria-hidden="true"></canvas>
+  <div class="clouds" aria-hidden="true"><i></i><i></i><i></i></div>
+
+  <main id="content">
+    <!-- name tag -->
+    <section class="tag-wrap reveal">
+      <div class="nametag">
+        <div class="nametag-top">
+          <h1 class="hello">HELLO</h1>
+          <p>my name is</p>
+        </div>
+        <div class="nametag-name">
+          <span class="name-big">SAMSON</span>
+          <span class="name-big">WAN</span>
+          <span class="name-real">(Rensong on paper)</span>
+        </div>
+      </div>
+      <p class="tag-line">I'm a <mark>Math-CS + Data Science</mark> student at UC San Diego who builds playful frontends and researches how <mark class="m-mint">tiny language models</mark> can learn more from less data.</p>
+      <div class="marquee" aria-label="Things I am">
+        <div class="marquee-track">
+          <span>Table Tennis Enjoyer</span><span>Calisthenics</span><span>Frontend Tinkerer</span><span>Tiny-LM Trainer</span><span>Brooklyn → San Diego</span><span>Lofi Listener</span><span>Java &amp; Python</span><span>Vue &amp; React</span>
+          <span>Table Tennis Enjoyer</span><span>Calisthenics</span><span>Frontend Tinkerer</span><span>Tiny-LM Trainer</span><span>Brooklyn → San Diego</span><span>Lofi Listener</span><span>Java &amp; Python</span><span>Vue &amp; React</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="layout">
+      <div class="col-main">
+        <!-- about -->
+        <article class="win reveal" id="about">
+          <header class="win-bar"><span>☾ about.txt</span><b></b></header>
+          <div class="win-body">
+            <p>Hi! I'm <strong>Rensong (Samson) Wan</strong>. I grew up in New York, graduated from Brooklyn Tech, and now study <strong>Math &amp; Computer Science</strong> and <strong>Data Science</strong> at UC San Diego (class of 2027).</p>
+            <p>I like work that sits between creativity and rigor: shipping interfaces people actually enjoy using, and running careful experiments on how models learn.</p>
+            <h3 class="mini">some quick facts:</h3>
+            <ul class="facts">
+              <li>Fluent in <b>Java</b>, <b>Python</b>, <b>React</b> and <b>Vue</b>.</li>
+              <li>GPA <b class="count" data-to="3.97" data-dec="2">3.97</b> / 4.00 · Provost Honors · Magna Cum Laude.</li>
+              <li>Interned at <b>JD.com</b> in Beijing, twice: once on ASR models, once on frontend.</li>
+              <li>Currently researching <b>sample-efficient pretraining</b> for the BabyLM Challenge.</li>
+              <li>Speaks Chinese (native) and English (fluent).</li>
+              <li>Off-screen: <b>table tennis</b> 🏓 and <b>calisthenics</b> 🤸.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- research -->
+        <article class="win win-yellow reveal" id="research">
+          <header class="win-bar"><span>🍼 research / babylm.ipynb</span><b></b></header>
+          <div class="win-body">
+            <div class="role-row">
+              <div>
+                <h2 class="h2">BabyLM Challenge</h2>
+                <p class="sub">Undergraduate Researcher · Data Science Capstone (DSC 180) · UC San Diego</p>
+              </div>
+              <span class="date-chip">Sep 2026 → Mar 2027</span>
+            </div>
+            <p>How much can a language model learn from roughly the amount of language a child hears by age 13? I'm working on sample-efficient pretraining under BabyLM's developmentally plausible data budget.</p>
+
+            <div class="budget">
+              <div class="budget-row"><span>BabyLM budget</span><div class="bar"><i style="--w:100%"></i></div><b><span class="count" data-to="100" data-dec="0">100</span>M words</b></div>
+              <div class="budget-note">≈ what a child hears by age 13. Big LLMs train on trillions of tokens.</div>
+            </div>
+
+            <h3 class="mini">my idea: let the model sharpen its own learning signal</h3>
+            <p>A self-improving objective that combines <b>self-distillation from an EMA teacher</b> with <b>dynamic loss-based sample reweighting</b>, so no external pretrained teacher and no extra data are needed.</p>
+
+            <div class="ablation" role="group" aria-label="2 by 2 ablation design">
+              <div class="ab-head"></div>
+              <div class="ab-head">reweighting off</div>
+              <div class="ab-head">reweighting on</div>
+              <div class="ab-side">EMA distill off</div>
+              <button class="ab-cell is-active" data-k="base">Baseline</button>
+              <button class="ab-cell" data-k="rw">Reweight only</button>
+              <div class="ab-side">EMA distill on</div>
+              <button class="ab-cell" data-k="dist">Distill only</button>
+              <button class="ab-cell star" data-k="both">Combined ✦</button>
+            </div>
+            <p class="ab-desc" id="ab-desc" aria-live="polite"></p>
+            <p class="small">Architecture, tokenizer, training data, token budget and hyperparameters stay fixed, so each cell isolates one component.</p>
+
+            <h3 class="mini">evaluated with</h3>
+            <div class="chips">
+              <span class="chip">BLiMP</span><span class="chip">BLiMP Supplement</span><span class="chip">EWoK</span><span class="chip">(Super)GLUE</span><span class="chip">checkpoint loss curves</span><span class="chip">sample-weight analysis × seeds</span>
+            </div>
+            <p class="small">Also co-wrote the team's proposal on bringing <b>prosody</b> into data-limited LM training, picked as our direction for the second quarter.</p>
+          </div>
+        </article>
+
+        <!-- experience -->
+        <article class="win reveal" id="experience">
+          <header class="win-bar"><span>⚔ quest_log / experience</span><b></b></header>
+          <div class="win-body">
+            <ol class="quests">
+              <li class="quest">
+                <div class="q-top"><h3>Frontend Developer</h3><span class="date-chip">Jul – Sep 2025</span></div>
+                <p class="q-org">JD.com (Jingdong) · Beijing</p>
+                <ul>
+                  <li>Built interactive <b>Vue.js mini-games</b> inside JD Jinrong, a finance app.</li>
+                  <li>Wired cloud API results into automated, AI-driven customer replies.</li>
+                  <li>Helped merge two legacy projects into one platform, growing JD White Strip users by <b class="count" data-to="20" data-suffix="%">20%</b>.</li>
+                </ul>
+                <div class="chips sm"><span class="chip">Vue.js</span><span class="chip">APIs</span><span class="chip">games</span></div>
+              </li>
+              <li class="quest">
+                <div class="q-top"><h3>Frontend Lead / Backend SWE</h3><span class="date-chip">May 2025 – Jan 2026</span></div>
+                <p class="q-org">NoCrastination · UC San Diego</p>
+                <ul>
+                  <li>Set the technical direction of the frontend architecture and split the work across the team.</li>
+                  <li>Wrote maintainable code across the stack.</li>
+                </ul>
+                <div class="chips sm"><span class="chip">team lead</span><span class="chip">architecture</span></div>
+              </li>
+              <li class="quest">
+                <div class="q-top"><h3>Frontend Software Engineer</h3><span class="date-chip">Feb – Jul 2025</span></div>
+                <p class="q-org">SkillTree · UC San Diego</p>
+                <ul>
+                  <li>Built reusable, responsive components and smooth navigation with <b>React Native + Expo</b>.</li>
+                  <li>Worked with UI/UX from design through dev and refined the <b>Figma</b> prototypes.</li>
+                </ul>
+                <div class="chips sm"><span class="chip">React Native</span><span class="chip">Expo</span><span class="chip">Figma</span></div>
+              </li>
+              <li class="quest">
+                <div class="q-top"><h3>AI Algorithm Engineer</h3><span class="date-chip">Aug – Oct 2024</span></div>
+                <p class="q-org">JD.com (Jingdong) · Beijing</p>
+                <ul>
+                  <li>Analyzed how <b>network size relates to word error rate</b> in speech recognition models (TensorFlow).</li>
+                  <li>Used polynomial regression and gradient descent to guide model architecture choices.</li>
+                  <li>Stress-tested prototypes on video clips (punctuation, vocabulary, structure errors) and fed findings back into training data.</li>
+                </ul>
+                <div class="chips sm"><span class="chip">Python</span><span class="chip">TensorFlow</span><span class="chip">ASR</span></div>
+              </li>
+            </ol>
+          </div>
+        </article>
+
+        <!-- education -->
+        <article class="win win-mint reveal" id="education">
+          <header class="win-bar"><span>🎓 education.exe</span><b></b></header>
+          <div class="win-body">
+            <div class="edu">
+              <div class="edu-card">
+                <h3>University of California, San Diego</h3>
+                <p>B.S. <b>Math &amp; Computer Science</b><br />B.S. <b>Data Science</b></p>
+                <p class="sub">Expected June 2027</p>
+                <div class="gpa"><span class="count" data-to="3.97" data-dec="2">3.97</span><small>/ 4.00 GPA</small></div>
+                <div class="chips sm"><span class="chip gold">Provost Honors</span><span class="chip gold">Magna Cum Laude</span></div>
+              </div>
+              <div class="edu-card">
+                <h3>Brooklyn Technical High School</h3>
+                <p>High School Diploma · New York</p>
+                <p class="sub">June 2023</p>
+                <div class="gpa"><span class="count" data-to="4.00" data-dec="2">4.00</span><small>/ 4.00 GPA</small></div>
+              </div>
+            </div>
+            <h3 class="mini">inventory: relevant courses</h3>
+            <div class="inventory">
+              <div class="slot"><b>CSE 100</b><span>Advanced Data Structures</span></div>
+              <div class="slot"><b>CSE 101</b><span>Algorithms</span></div>
+              <div class="slot"><b>CSE 105</b><span>Theory of Computability</span></div>
+              <div class="slot"><b>CSE 120</b><span>Operating Systems</span></div>
+              <div class="slot"><b>CSE 150A</b><span>AI: Probabilistic Reasoning</span></div>
+              <div class="slot"><b>DSC 100</b><span>Data Management</span></div>
+              <div class="slot"><b>DSC 102</b><span>Scalable Analytics</span></div>
+              <div class="slot"><b>DSC 180</b><span>Capstone: BabyLM</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- extracurricular -->
+        <article class="win reveal" id="community">
+          <header class="win-bar"><span>✿ community / side quests</span><b></b></header>
+          <div class="win-body">
+            <div class="side-quests">
+              <div class="sq">
+                <span class="date-chip">Oct 2023 – Feb 2025</span>
+                <h3>Assistant Event Coordinator</h3>
+                <p class="q-org">UCSD Chinese Students &amp; Scholars Association</p>
+                <p>Helped run Halloween and Chinese New Year events for <b>400+</b> people: venue setup, IT fixes and last-minute changes.</p>
+              </div>
+              <div class="sq">
+                <span class="date-chip">Sep 2024 – Jun 2025</span>
+                <h3>Mentor</h3>
+                <p class="q-org">UCSD Mentor Collective</p>
+                <p>One-on-one mentoring for first-year and transfer students: academic goals and finding campus resources.</p>
+              </div>
+              <div class="sq">
+                <span class="date-chip">Jan 2024 – Feb 2025</span>
+                <h3>Human Resources</h3>
+                <p class="q-org">Mood Psychology @ UCSD</p>
+                <p>Coordinated recruiting with 20+ applicants and 5 department heads, interviewed candidates and tracked member records.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- contact -->
+        <article class="win win-pink reveal" id="contact">
+          <header class="win-bar"><span>✉ contact.me</span><b></b></header>
+          <div class="win-body contact">
+            <h2 class="h2 big">Excited to chat?<br />Let's talk!</h2>
+            <p>Open to internships, research collaborations and fun frontend projects. My inbox is always open.</p>
+            <div class="contact-btns">
+              <a class="btn btn-yellow" href="mailto:rensongwan@gmail.com">✉ rensongwan@gmail.com</a>
+              <a class="btn btn-mint" href="mailto:r1wan@ucsd.edu">🎓 r1wan@ucsd.edu</a>
+              <a class="btn btn-lav" href="https://linkedin.com/in/lukrim" target="_blank" rel="noopener">in / lukrim</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- ================= SIDEBAR ================= -->
+      <aside class="col-side">
+        <div class="win win-dark reveal">
+          <header class="win-bar"><span>☾ tonight</span><b></b></header>
+          <div class="win-body tonight">
+            <canvas id="moon-phase" width="120" height="120" aria-hidden="true"></canvas>
+            <div>
+              <p class="pix big" id="moon-name">—</p>
+              <p class="pix" id="moon-illum"></p>
+              <p class="pix dim" id="sd-time"></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="win win-dark reveal">
+          <header class="win-bar"><span>systems status</span><b></b></header>
+          <div class="win-body pix status">
+            <p><i class="ok">[ OK ]</i> samson.dev</p>
+            <p id="st-radio"><i class="wait">[ ·· ]</i> lofi radio</p>
+            <p><i class="busy">[ <span class="spin">|</span> ]</i> babylm pretraining</p>
+            <p><i class="ok">[ OK ]</i> tea (refilled)</p>
+            <p><i class="ok">[ OK ]</i> cat (asleep)</p>
+            <p><i class="warn">[WARN]</i> sleep schedule</p>
+          </div>
+        </div>
+
+        <div class="win reveal">
+          <header class="win-bar"><span>★ links</span><b></b></header>
+          <div class="win-body">
+            <ul class="links">
+              <li><a href="#about">☾ about me</a></li>
+              <li><a href="#research">☾ research</a></li>
+              <li><a href="#experience">☾ experience</a></li>
+              <li><a href="#education">☾ education</a></li>
+              <li><a href="#community">☾ community</a></li>
+              <li><a href="#contact">☾ contact</a></li>
+              <li><a href="https://linkedin.com/in/lukrim" target="_blank" rel="noopener">☾ linkedin ↗</a></li>
+              <li><a href="#hero" id="back-room">☾ back to my room</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="win win-yellow reveal">
+          <header class="win-bar"><span>✦ skills.json</span><b></b></header>
+          <div class="win-body">
+            <div class="skill-cloud">
+              <span class="sk s-l">Python</span><span class="sk s-l">Java</span><span class="sk s-m">React</span><span class="sk s-m">Vue.js</span><span class="sk">React Native</span><span class="sk">Expo</span><span class="sk">TensorFlow</span><span class="sk">Figma</span><span class="sk">Data Science</span><span class="sk">ML experiments</span><span class="sk">Google Sheets</span>
+            </div>
+            <p class="pix dim">langs: 中文 (native) · English (fluent)</p>
+          </div>
+        </div>
+
+        <div class="win win-dark reveal">
+          <header class="win-bar"><span>guest counter</span><b></b></header>
+          <div class="win-body pix">
+            <p>you've visited this site</p>
+            <p class="odometer" id="visits">0001</p>
+            <p class="dim">times (from this browser) ✧</p>
+          </div>
+        </div>
+
+        <div class="badges reveal" aria-label="Decorative badges">
+          <span class="b88 b1">LOFI ON ♪</span>
+          <span class="b88 b2">THREE.JS</span>
+          <span class="b88 b3">BKLYN→SD</span>
+          <span class="b88 b4">UCSD '27</span>
+          <span class="b88 b5">NIGHT OWL</span>
+          <span class="b88 b6">TEA POWERED</span>
+        </div>
+      </aside>
+    </div>
+
+    <footer class="foot">
+      <p class="quote">"a model is never overfit, nor is it underfit. it converges precisely when it means to."</p>
+      <p class="pix dim">built with three.js, web audio &amp; too much tea · © <span id="yr">2026</span> Samson Wan</p>
+    </footer>
+  </main>
+
+  <!-- ================= LOFI PLAYER ================= -->
+  <div id="player" class="player" aria-label="Lofi radio player">
+    <div class="player-bar">
+      <span>♪ lofi.fm — live &amp; generative</span>
+      <button class="p-min" id="p-min" aria-label="Minimize player">_</button>
+    </div>
+    <div class="player-body">
+      <div class="cassette" aria-hidden="true">
+        <div class="reel"></div><div class="tape-window"></div><div class="reel"></div>
+      </div>
+      <div class="p-info">
+        <p class="pix p-chord" id="p-chord">press play ☾</p>
+        <p class="pix dim" id="p-meta">synthesized live in your browser</p>
+        <canvas id="viz" width="180" height="28" aria-hidden="true"></canvas>
+      </div>
+    </div>
+    <div class="p-controls">
+      <button class="pbtn" id="p-play" aria-label="Play">▶</button>
+      <button class="pbtn" id="p-skip" aria-label="New track" title="new progression">⏭</button>
+      <button class="pbtn on" id="p-rain" aria-label="Toggle rain" title="rain">☔</button>
+      <input id="p-vol" type="range" min="0" max="1" step="0.01" value="0.7" aria-label="Volume" />
+    </div>
+  </div>
+  <button id="player-pill" class="player-pill" aria-label="Open lofi player">♪</button>
+
+  <div id="bubble" class="bubble" role="status"></div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
